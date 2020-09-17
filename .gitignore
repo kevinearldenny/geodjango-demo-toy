@@ -1,0 +1,9 @@
+*.doctree 
+*.swp 
+*.swo 
+*.pyc 
+*.suo 
+*.user 
+*.sql3 
+*.DS_Store
+*.idea
