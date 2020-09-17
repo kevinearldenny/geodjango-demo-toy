@@ -1,3 +1,4 @@
+# A number of these are unused and can be removed
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.views import generic
@@ -13,6 +14,7 @@ def index(request):
     return HttpResponse("Hello")
 
 def map(request):
+    # Looks like this is being assigned but then not actually used
     hoods = Neighborhood.objects.all()
     s = serialize('geojson', Neighborhood.objects.all(),
           geometry_field='geom',

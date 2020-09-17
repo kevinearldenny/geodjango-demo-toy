@@ -8,11 +8,18 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   web:
-    build: .
-    command: python3 manage.py migrate --noinput && python3 manage.py runserver 0.0.0.0:8000
+    build: ./src/django
+    # We would normally have something like ./scripts/console that would allow running
+    # migrations manually, and then only have the runserver in here.
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    # This is sometimes not sufficient to ensure that Django starts successfully, because
+    # it only ensures that the db container is _launched_ prior to the web container; it
+    # doesn't perform any health checks to confirm that the Postgres process is running
+    # and accepting connections. We use a wrapper script called ./scripts/server to
+    # incorporate this kind of logic if it becomes necessary.
     depends_on:
       - db

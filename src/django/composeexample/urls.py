@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+## This seems to be unused -- it's a good idea to configure linting in your text editor to catch
+## these types of things so they can be removed.
 from philly import views
 
 urlpatterns = [
