@@ -9,20 +9,21 @@ This project was created to practice leveraging Docker for containerization of a
 
 ## Run instructions
 
-1) `docker-compose build`
-2) `docker-compose up`
+1) Run setup command
+```
+$ ./scripts/setup
+```
+
+2) Run development server locally
+```
+$ docker-compose up
+```
 
 
 ### Migrations
 ```
-docker-compose run web ./manage.py makemigrations
-docker-compose run web ./manage.py migrate
+$ ./scripts/update
 ```
 
 ### Loading data
-1) `docker-compose run web ./manage.py shell` -- We normally create ./scripts/console to standardize this pattern
-```
-from philly import load
-
-load.run()
-```
+Data is automatically loaded as part of the setup command
